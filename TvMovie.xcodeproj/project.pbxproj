@@ -15,11 +15,13 @@
 		CB3622BC2C57C9C8002EC1EA /* Base in Resources */ = {isa = PBXBuildFile; fileRef = CB3622BB2C57C9C8002EC1EA /* Base */; };
 		CB3622C52C57CA10002EC1EA /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = CB3622C42C57CA10002EC1EA /* SnapKit */; };
 		CB3622CA2C57CA44002EC1EA /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = CB3622C92C57CA44002EC1EA /* Kingfisher */; };
-		CB3622CD2C57CB65002EC1EA /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = CB3622CC2C57CB65002EC1EA /* RxCocoa */; };
 		CB3622D22C57CF51002EC1EA /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3622D12C57CF51002EC1EA /* Const.swift */; };
 		CB3622D52C58B50B002EC1EA /* TV.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3622D42C58B50B002EC1EA /* TV.swift */; };
 		CB3622D72C58C0F2002EC1EA /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3622D62C58C0F2002EC1EA /* Movie.swift */; };
 		CB3622D92C58C466002EC1EA /* MovieResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3622D82C58C466002EC1EA /* MovieResult.swift */; };
+		CB3622DB2C58C671002EC1EA /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3622DA2C58C671002EC1EA /* Network.swift */; };
+		CB3622DE2C58C7ED002EC1EA /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = CB3622DD2C58C7ED002EC1EA /* RxCocoa */; };
+		CB3622E12C58C80C002EC1EA /* RxAlamofire in Frameworks */ = {isa = PBXBuildFile; productRef = CB3622E02C58C80C002EC1EA /* RxAlamofire */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +37,7 @@
 		CB3622D42C58B50B002EC1EA /* TV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TV.swift; sourceTree = "<group>"; };
 		CB3622D62C58C0F2002EC1EA /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		CB3622D82C58C466002EC1EA /* MovieResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieResult.swift; sourceTree = "<group>"; };
+		CB3622DA2C58C671002EC1EA /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,9 +45,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB3622DE2C58C7ED002EC1EA /* RxCocoa in Frameworks */,
+				CB3622E12C58C80C002EC1EA /* RxAlamofire in Frameworks */,
 				CB3622CA2C57CA44002EC1EA /* Kingfisher in Frameworks */,
 				CB3622C52C57CA10002EC1EA /* SnapKit in Frameworks */,
-				CB3622CD2C57CB65002EC1EA /* RxCocoa in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -71,11 +75,11 @@
 		CB3622AE2C57C9C7002EC1EA /* TvMovie */ = {
 			isa = PBXGroup;
 			children = (
-				CB3622D02C57CF45002EC1EA /* Network */,
 				CB3622AF2C57C9C7002EC1EA /* AppDelegate.swift */,
 				CB3622B12C57C9C7002EC1EA /* SceneDelegate.swift */,
 				CB3622B32C57C9C7002EC1EA /* ViewController.swift */,
 				CB3622B52C57C9C7002EC1EA /* Main.storyboard */,
+				CB3622D02C57CF45002EC1EA /* Network */,
 				CB3622B82C57C9C8002EC1EA /* Assets.xcassets */,
 				CB3622BA2C57C9C8002EC1EA /* LaunchScreen.storyboard */,
 				CB3622BD2C57C9C8002EC1EA /* Info.plist */,
@@ -93,20 +97,21 @@
 		CB3622D02C57CF45002EC1EA /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				CB3622D32C58B501002EC1EA /* Entity */,
+				CB3622D32C58B501002EC1EA /* Entities */,
 				CB3622D12C57CF51002EC1EA /* Const.swift */,
+				CB3622DA2C58C671002EC1EA /* Network.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
 		};
-		CB3622D32C58B501002EC1EA /* Entity */ = {
+		CB3622D32C58B501002EC1EA /* Entities */ = {
 			isa = PBXGroup;
 			children = (
 				CB3622D42C58B50B002EC1EA /* TV.swift */,
 				CB3622D62C58C0F2002EC1EA /* Movie.swift */,
 				CB3622D82C58C466002EC1EA /* MovieResult.swift */,
 			);
-			path = Entity;
+			path = Entities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -128,7 +133,8 @@
 			packageProductDependencies = (
 				CB3622C42C57CA10002EC1EA /* SnapKit */,
 				CB3622C92C57CA44002EC1EA /* Kingfisher */,
-				CB3622CC2C57CB65002EC1EA /* RxCocoa */,
+				CB3622DD2C58C7ED002EC1EA /* RxCocoa */,
+				CB3622E02C58C80C002EC1EA /* RxAlamofire */,
 			);
 			productName = TvMovie;
 			productReference = CB3622AC2C57C9C7002EC1EA /* TvMovie.app */;
@@ -161,8 +167,8 @@
 			packageReferences = (
 				CB3622C32C57CA10002EC1EA /* XCRemoteSwiftPackageReference "SnapKit" */,
 				CB3622C82C57CA44002EC1EA /* XCRemoteSwiftPackageReference "Kingfisher" */,
-				CB3622CB2C57CB65002EC1EA /* XCRemoteSwiftPackageReference "RxSwift" */,
-				CB3622CE2C57CB88002EC1EA /* XCRemoteSwiftPackageReference "RxAlamofire" */,
+				CB3622DC2C58C7ED002EC1EA /* XCRemoteSwiftPackageReference "RxSwift" */,
+				CB3622DF2C58C80C002EC1EA /* XCRemoteSwiftPackageReference "RxAlamofire" */,
 			);
 			productRefGroup = CB3622AD2C57C9C7002EC1EA /* Products */;
 			projectDirPath = "";
@@ -193,6 +199,7 @@
 			files = (
 				CB3622D92C58C466002EC1EA /* MovieResult.swift in Sources */,
 				CB3622B42C57C9C7002EC1EA /* ViewController.swift in Sources */,
+				CB3622DB2C58C671002EC1EA /* Network.swift in Sources */,
 				CB3622D22C57CF51002EC1EA /* Const.swift in Sources */,
 				CB3622D72C58C0F2002EC1EA /* Movie.swift in Sources */,
 				CB3622B02C57C9C7002EC1EA /* AppDelegate.swift in Sources */,
@@ -438,15 +445,15 @@
 				minimumVersion = 7.12.0;
 			};
 		};
-		CB3622CB2C57CB65002EC1EA /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+		CB3622DC2C58C7ED002EC1EA /* XCRemoteSwiftPackageReference "RxSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 6.7.1;
+				minimumVersion = 5.0.0;
 			};
 		};
-		CB3622CE2C57CB88002EC1EA /* XCRemoteSwiftPackageReference "RxAlamofire" */ = {
+		CB3622DF2C58C80C002EC1EA /* XCRemoteSwiftPackageReference "RxAlamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/RxSwiftCommunity/RxAlamofire.git";
 			requirement = {
@@ -467,10 +474,15 @@
 			package = CB3622C82C57CA44002EC1EA /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
 		};
-		CB3622CC2C57CB65002EC1EA /* RxCocoa */ = {
+		CB3622DD2C58C7ED002EC1EA /* RxCocoa */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CB3622CB2C57CB65002EC1EA /* XCRemoteSwiftPackageReference "RxSwift" */;
+			package = CB3622DC2C58C7ED002EC1EA /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxCocoa;
+		};
+		CB3622E02C58C80C002EC1EA /* RxAlamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CB3622DF2C58C80C002EC1EA /* XCRemoteSwiftPackageReference "RxAlamofire" */;
+			productName = RxAlamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
