@@ -22,6 +22,9 @@
 		CB3622DB2C58C671002EC1EA /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3622DA2C58C671002EC1EA /* Network.swift */; };
 		CB3622DE2C58C7ED002EC1EA /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = CB3622DD2C58C7ED002EC1EA /* RxCocoa */; };
 		CB3622E12C58C80C002EC1EA /* RxAlamofire in Frameworks */ = {isa = PBXBuildFile; productRef = CB3622E02C58C80C002EC1EA /* RxAlamofire */; };
+		CB3622E32C5A0627002EC1EA /* TVNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3622E22C5A0627002EC1EA /* TVNetwork.swift */; };
+		CB3622E52C5A062F002EC1EA /* MovieNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3622E42C5A062F002EC1EA /* MovieNetwork.swift */; };
+		CB3622E72C5A07C5002EC1EA /* NetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3622E62C5A07C5002EC1EA /* NetworkProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +41,9 @@
 		CB3622D62C58C0F2002EC1EA /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		CB3622D82C58C466002EC1EA /* MovieResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieResult.swift; sourceTree = "<group>"; };
 		CB3622DA2C58C671002EC1EA /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		CB3622E22C5A0627002EC1EA /* TVNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVNetwork.swift; sourceTree = "<group>"; };
+		CB3622E42C5A062F002EC1EA /* MovieNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieNetwork.swift; sourceTree = "<group>"; };
+		CB3622E62C5A07C5002EC1EA /* NetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProvider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,9 +103,12 @@
 		CB3622D02C57CF45002EC1EA /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				CB3622D32C58B501002EC1EA /* Entities */,
 				CB3622D12C57CF51002EC1EA /* Const.swift */,
+				CB3622D32C58B501002EC1EA /* Entities */,
 				CB3622DA2C58C671002EC1EA /* Network.swift */,
+				CB3622E22C5A0627002EC1EA /* TVNetwork.swift */,
+				CB3622E42C5A062F002EC1EA /* MovieNetwork.swift */,
+				CB3622E62C5A07C5002EC1EA /* NetworkProvider.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -200,8 +209,11 @@
 				CB3622D92C58C466002EC1EA /* MovieResult.swift in Sources */,
 				CB3622B42C57C9C7002EC1EA /* ViewController.swift in Sources */,
 				CB3622DB2C58C671002EC1EA /* Network.swift in Sources */,
+				CB3622E32C5A0627002EC1EA /* TVNetwork.swift in Sources */,
 				CB3622D22C57CF51002EC1EA /* Const.swift in Sources */,
+				CB3622E52C5A062F002EC1EA /* MovieNetwork.swift in Sources */,
 				CB3622D72C58C0F2002EC1EA /* Movie.swift in Sources */,
+				CB3622E72C5A07C5002EC1EA /* NetworkProvider.swift in Sources */,
 				CB3622B02C57C9C7002EC1EA /* AppDelegate.swift in Sources */,
 				CB3622D52C58B50B002EC1EA /* TV.swift in Sources */,
 				CB3622B22C57C9C7002EC1EA /* SceneDelegate.swift in Sources */,

@@ -49,6 +49,13 @@ struct Movie : Decodable {
 //https://api.themoviedb.org/3/movie/popular?api_key=a2b4f31ac5d507b646da97dd148418b2&language=kr
 
 //{
+//"page": 1,
+//"results": [],
+//"total_pages": 45325,
+//"total_results": 906498
+//}
+
+//{
 //  "page": 1,
 //  "results": [
 //    {
