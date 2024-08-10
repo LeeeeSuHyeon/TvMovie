@@ -28,6 +28,10 @@ class ViewModel {
             print("tvTrigger")
         }.disposed(by: disposeBag)
         
+        input.MovieTrigger.bind {
+            print("movieTrigger")
+        }.disposed(by: disposeBag)
+        
         return Output(tvList: Observable<[TV]>.just([]))
     }
 }

@@ -52,12 +52,20 @@ class ViewController: UIViewController {
         output.tvList.bind { tvList in
             print(tvList)
         }.disposed(by: disposeBag)
+        
+//        output.movieList.bind { movieList in
+//            print(movieList)
+//        }.disposed(by : disposeBag)
     }
     
     private func bindView(){
         // TV 버튼 눌렀을 때, tvTrigger에 Void 전달
         buttonView.TVButton.rx.tap.bind { [weak self] in
             self?.tvTrigger.onNext(Void())
+        }.disposed(by: disposeBag)
+        
+        buttonView.MovieButton.rx.tap.bind { [weak self] in 
+            self?.movieTrigger.onNext(Void())
         }.disposed(by: disposeBag)
     }
 
