@@ -26,7 +26,7 @@ class ViewModel {
     
     struct Output {
         let tvList : Observable<[TV]>
-//        let MovieList : Observable<MovieResult>
+        let movieResult : Observable<MovieResult>
     }
     
     func transform(input : Input) -> Output {
@@ -38,6 +38,14 @@ class ViewModel {
             return self.tvNetwork.getTopRatedList().map{$0.results}
         }
         
+        let movieResult = input.MovieTrigger.flatMapLatest { [unowned self] _ -> Observable<MovieResult> in
+            
+            // 여러 개의 Observable을 합칠 때는 combineLatest를 사용
+            return Observable.combineLatest(movieNetwork.getUpcomming(), movieNetwork.getPopular(), movieNetwork.getNowPlaying()){ upcomming, popular, nowPlaying -> MovieResult in
+                
+                return MovieResult(upcomming: upcomming, popular: popular, nowPlaying: nowPlaying)
+            }
+        }
         
         // ViewController의 input.tvTrigger 바인딩
 //        input.tvTrigger.bind {
@@ -48,6 +56,6 @@ class ViewModel {
             print("movieTrigger")
         }.disposed(by: disposeBag)
         
-        return Output(tvList: tvList)
+        return Output(tvList: tvList, movieResult: movieResult)
     }
 }
