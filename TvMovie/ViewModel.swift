@@ -9,6 +9,7 @@ import Foundation
 import RxSwift
 
 class ViewModel {
+    let disposeBag = DisposeBag()
     
     struct Input {
         let tvTrigger : Observable<Void>
@@ -21,6 +22,12 @@ class ViewModel {
     }
     
     func transform(input : Input) -> Output {
+        
+        // ViewController의 input.tvTrigger 바인딩
+        input.tvTrigger.bind {
+            print("tvTrigger")
+        }.disposed(by: disposeBag)
+        
         return Output(tvList: Observable<[TV]>.just([]))
     }
 }
