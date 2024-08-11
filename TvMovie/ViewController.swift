@@ -9,11 +9,27 @@ import UIKit
 import SnapKit
 import RxSwift
 
+// 레이아웃
+enum Section : Hashable {
+    case double 
+}
+
+// 셀
+enum item : Hashable {
+    case normal(TV)
+    
+}
+
 class ViewController: UIViewController {
     let disposeBag = DisposeBag()
     let buttonView = ButtonView()
     
-    var collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
+    var collectionView : UICollectionView = {
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
+        collectionView.register(NormalCollectionViewCell.self, forCellWithReuseIdentifier: NormalCollectionViewCell.id)
+        
+        return collectionView
+    }()
     let viewModel = ViewModel()
     let tvTrigger = PublishSubject<Void>()
     let movieTrigger = PublishSubject<Void>()
