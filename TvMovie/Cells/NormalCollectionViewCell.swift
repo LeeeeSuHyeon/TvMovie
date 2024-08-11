@@ -70,6 +70,13 @@ class NormalCollectionViewCell : UICollectionViewCell {
         }
     }
     
+    func config(imageURL : String, title : String, review : String, description : String) {
+        imageView.kf.setImage(with: URL(string: imageURL))
+        titleLabel.text = title
+        reviewLabel.text = review
+        descriptionLabel.text = description
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
