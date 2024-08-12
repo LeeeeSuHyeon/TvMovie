@@ -13,7 +13,13 @@ import Kingfisher
 class BigImageCollectionViewCell : UICollectionViewCell {
     static let id = "BigImageCollectionViewCell"
     
-    let imageView = UIImageView()
+    let imageView : UIImageView = {
+        let view = UIImageView()
+        view.layer.masksToBounds = true
+        view.layer.cornerRadius = 8
+        return view
+    }()
+    
     let stackView : UIStackView = {
         let view = UIStackView()
         view.axis = .vertical

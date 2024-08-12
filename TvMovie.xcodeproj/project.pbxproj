@@ -29,6 +29,7 @@
 		CB3622EB2C5B59F4002EC1EA /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3622EA2C5B59F4002EC1EA /* ViewModel.swift */; };
 		CB3A05392C69CDB9002297F3 /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3A05382C69CDB9002297F3 /* Content.swift */; };
 		CB3A053B2C69D074002297F3 /* BigImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3A053A2C69D074002297F3 /* BigImageCollectionViewCell.swift */; };
+		CB3A053D2C69D29B002297F3 /* ListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3A053C2C69D29B002297F3 /* ListCollectionViewCell.swift */; };
 		CBEDB2012C68873000FFF5A9 /* NormalCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEDB2002C68872F00FFF5A9 /* NormalCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +54,7 @@
 		CB3622EA2C5B59F4002EC1EA /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		CB3A05382C69CDB9002297F3 /* Content.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Content.swift; sourceTree = "<group>"; };
 		CB3A053A2C69D074002297F3 /* BigImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		CB3A053C2C69D29B002297F3 /* ListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCollectionViewCell.swift; sourceTree = "<group>"; };
 		CBEDB2002C68872F00FFF5A9 /* NormalCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -141,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				CBEDB2002C68872F00FFF5A9 /* NormalCollectionViewCell.swift */,
+				CB3A053C2C69D29B002297F3 /* ListCollectionViewCell.swift */,
 				CB3A053A2C69D074002297F3 /* BigImageCollectionViewCell.swift */,
 			);
 			path = Cells;
@@ -244,6 +247,7 @@
 				CB3622B02C57C9C7002EC1EA /* AppDelegate.swift in Sources */,
 				CB3622D52C58B50B002EC1EA /* TV.swift in Sources */,
 				CB3A053B2C69D074002297F3 /* BigImageCollectionViewCell.swift in Sources */,
+				CB3A053D2C69D29B002297F3 /* ListCollectionViewCell.swift in Sources */,
 				CB3622B22C57C9C7002EC1EA /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
