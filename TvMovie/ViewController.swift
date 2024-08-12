@@ -19,7 +19,7 @@ enum Section : Hashable {
 
 // 셀
 enum Item : Hashable {
-    case normal(TV)
+    case normal(Content)
     case bigImage(Movie)
     case list(Movie)
     
@@ -33,6 +33,7 @@ class ViewController: UIViewController {
     lazy var collectionView : UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.createLayout())
         collectionView.register(NormalCollectionViewCell.self, forCellWithReuseIdentifier: NormalCollectionViewCell.id)
+        collectionView.register(BigImageCollectionViewCell.self, forCellWithReuseIdentifier: BigImageCollectionViewCell.id)
         
         return collectionView
     }()
@@ -75,7 +76,7 @@ class ViewController: UIViewController {
         output.tvList.bind {[weak self] tvList in
             print(tvList)
             var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
-            let items = tvList.map{Item.normal($0)}
+            let items = tvList.map{Item.normal(Content(tv: $0))}
             let section = Section.double
             snapshot.appendSections([section])
             snapshot.appendItems(items, toSection: section)
@@ -124,9 +125,9 @@ class ViewController: UIViewController {
     private func setDatasource() {
          dataSource = UICollectionViewDiffableDataSource<Section, Item>(collectionView: collectionView) { collectionView, indexPath, item in
              switch item {
-             case .normal(let tvData) :
+             case .normal(let contentData) :
                  let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NormalCollectionViewCell.id, for: indexPath) as? NormalCollectionViewCell
-                 cell?.config(imageURL: tvData.posterURL, title: tvData.name, review: tvData.vote, description: tvData.overview)
+                 cell?.config(imageURL: contentData.posterPath, title: contentData.title, review: contentData.vote, description: contentData.overview)
                  return cell
              case .bigImage(_):
                  <#code#>
