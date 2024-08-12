@@ -30,6 +30,7 @@
 		CB3A05392C69CDB9002297F3 /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3A05382C69CDB9002297F3 /* Content.swift */; };
 		CB3A053B2C69D074002297F3 /* BigImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3A053A2C69D074002297F3 /* BigImageCollectionViewCell.swift */; };
 		CB3A053D2C69D29B002297F3 /* ListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3A053C2C69D29B002297F3 /* ListCollectionViewCell.swift */; };
+		CB3A053F2C69D7B3002297F3 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3A053E2C69D7B3002297F3 /* HeaderView.swift */; };
 		CBEDB2012C68873000FFF5A9 /* NormalCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEDB2002C68872F00FFF5A9 /* NormalCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +56,7 @@
 		CB3A05382C69CDB9002297F3 /* Content.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Content.swift; sourceTree = "<group>"; };
 		CB3A053A2C69D074002297F3 /* BigImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		CB3A053C2C69D29B002297F3 /* ListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCollectionViewCell.swift; sourceTree = "<group>"; };
+		CB3A053E2C69D7B3002297F3 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		CBEDB2002C68872F00FFF5A9 /* NormalCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -145,6 +147,7 @@
 				CBEDB2002C68872F00FFF5A9 /* NormalCollectionViewCell.swift */,
 				CB3A053C2C69D29B002297F3 /* ListCollectionViewCell.swift */,
 				CB3A053A2C69D074002297F3 /* BigImageCollectionViewCell.swift */,
+				CB3A053E2C69D7B3002297F3 /* HeaderView.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -233,6 +236,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CB3622D92C58C466002EC1EA /* MovieResult.swift in Sources */,
+				CB3A053F2C69D7B3002297F3 /* HeaderView.swift in Sources */,
 				CB3622B42C57C9C7002EC1EA /* ViewController.swift in Sources */,
 				CB3622E92C5A0B67002EC1EA /* ButtonView.swift in Sources */,
 				CBEDB2012C68873000FFF5A9 /* NormalCollectionViewCell.swift in Sources */,
