@@ -12,11 +12,16 @@ import RxSwift
 // 레이아웃
 enum Section : Hashable {
     case double 
+    case banner
+    case horizontal
+    case vertical
 }
 
 // 셀
 enum Item : Hashable {
     case normal(TV)
+    case bigImage(Movie)
+    case list(Movie)
     
 }
 
@@ -123,6 +128,10 @@ class ViewController: UIViewController {
                  let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NormalCollectionViewCell.id, for: indexPath) as? NormalCollectionViewCell
                  cell?.config(imageURL: tvData.posterURL, title: tvData.name, review: tvData.vote, description: tvData.overview)
                  return cell
+             case .bigImage(_):
+                 <#code#>
+             case .list(_):
+                 <#code#>
              }
         }
     }
