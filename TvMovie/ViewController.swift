@@ -149,6 +149,11 @@ class ViewController: UIViewController {
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .continuous
         
+        // 헤더 추가
+        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(44))
+        let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .topLeading)
+        section.boundarySupplementaryItems.append(header)
+        
         return section
     }
     
@@ -194,6 +199,20 @@ class ViewController: UIViewController {
                  cell?.config(title: movie.title, review: movie.vote, description: movie.overview, url: movie.posterPath)
                  return cell
              }
+        }
+        
+        // Section Header 설정 
+        dataSource?.supplementaryViewProvider = { collectionView, kind, indexPath -> UICollectionReusableView in
+            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderView.id, for: indexPath)
+            let section = self.dataSource?.sectionIdentifier(for: indexPath.section)
+            switch section {
+            case .horizontal(let title) :
+                (header as? HeaderView)?.config(title: title)
+            default :
+                print("not Header")
+            }
+            
+            return header
         }
     }
 
