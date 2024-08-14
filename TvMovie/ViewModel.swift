@@ -41,9 +41,9 @@ class ViewModel {
         let movieResult = input.MovieTrigger.flatMapLatest { [unowned self] _ -> Observable<MovieResult> in
             
             // 여러 개의 Observable을 합칠 때는 combineLatest를 사용
-            return Observable.combineLatest(movieNetwork.getUpcomming(), movieNetwork.getPopular(), movieNetwork.getNowPlaying()){ upcomming, popular, nowPlaying -> MovieResult in
+            return Observable.combineLatest(movieNetwork.getUpcoming(), movieNetwork.getPopular(), movieNetwork.getNowPlaying()){ upcoming, popular, nowPlaying -> MovieResult in
                 
-                return MovieResult(upcomming: upcomming, popular: popular, nowPlaying: nowPlaying)
+                return MovieResult(upcoming: upcoming, popular: popular, nowPlaying: nowPlaying)
             }
         }
         

@@ -42,6 +42,8 @@ class ListCollectionViewCell : UICollectionViewCell {
         imageView.snp.makeConstraints { make in
             make.leading.top.trailing.equalToSuperview()
             make.width.equalToSuperview().multipliedBy(0.3)
+            make.height.equalTo(imageView.snp.width)
+
         }
         
         titleLabel.snp.makeConstraints { make in

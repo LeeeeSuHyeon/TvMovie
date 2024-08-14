@@ -19,7 +19,7 @@ final class MovieNetwork {
         return network.getItemList(path: "movie/popular")
     }
     
-    func getUpcomming() -> Observable<MovieListModel>{
+    func getUpcoming() -> Observable<MovieListModel>{
         return network.getItemList(path: "movie/upcoming")
     }
     

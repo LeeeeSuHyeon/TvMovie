@@ -101,6 +101,11 @@ class ViewController: UIViewController {
             snapshot.appendSections([popularSection])
             snapshot.appendItems(popularItems, toSection: popularSection)
             
+            let upComingSection = Section.vertical("UpComing")
+            let upComingItems = movieResult.upcoming.results.map{Item.list($0)}
+            snapshot.appendSections([upComingSection])
+            snapshot.appendItems(upComingItems, toSection: upComingSection)
+            
             self.dataSource?.apply(snapshot)
             
             
@@ -126,16 +131,39 @@ class ViewController: UIViewController {
         return UICollectionViewCompositionalLayout(sectionProvider: {[weak self] sectionIndex, _ in
             let section = self?.dataSource?.sectionIdentifier(for: sectionIndex)
             switch section {
+            case .double :
+                return self?.createDoubleSection()
             case .banner :
                 return self?.createBannerSection()
             case .horizontal :
                 return self?.createHorizontalSection()
+            case .vertical :
+                return self?.createVerticalSection()
             default :
                 return self?.createDoubleSection()
             }
             
         }, configuration: config)
     
+    }
+    
+    private func createVerticalSection() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(0.3))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 0)
+        
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(350))
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitem: item, count: 3)
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.orthogonalScrollingBehavior = .continuous
+        
+        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(44))
+        let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .topLeading)
+        
+        section.boundarySupplementaryItems.append(header)
+        
+        return section
     }
     
     private func createHorizontalSection() -> NSCollectionLayoutSection {
@@ -195,18 +223,20 @@ class ViewController: UIViewController {
                  cell?.config(title: movie.title, review: movie.vote, description: movie.overview, url: movie.posterPath)
                  return cell
              case .list(let movie):
-                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BigImageCollectionViewCell.id, for: indexPath) as? BigImageCollectionViewCell
-                 cell?.config(title: movie.title, review: movie.vote, description: movie.overview, url: movie.posterPath)
+                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ListCollectionViewCell.id, for: indexPath) as? ListCollectionViewCell
+                 cell?.config(title: movie.title, releaseDate: movie.releaseDate, url: movie.posterPath)
                  return cell
              }
         }
         
-        // Section Header 설정 
+        // Section Header 설정
         dataSource?.supplementaryViewProvider = { collectionView, kind, indexPath -> UICollectionReusableView in
             let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderView.id, for: indexPath)
             let section = self.dataSource?.sectionIdentifier(for: indexPath.section)
             switch section {
             case .horizontal(let title) :
+                (header as? HeaderView)?.config(title: title)
+            case .vertical(let title) :
                 (header as? HeaderView)?.config(title: title)
             default :
                 print("not Header")

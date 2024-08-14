@@ -15,7 +15,7 @@ class HeaderView : UICollectionReusableView {
     
     let titleLabel : UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 20, weight: .bold)
+        label.font = .systemFont(ofSize: 30, weight: .bold)
         return label
     }()
     
@@ -24,7 +24,8 @@ class HeaderView : UICollectionReusableView {
         addSubview(titleLabel)
         
         titleLabel.snp.makeConstraints { make in
-            make.leading.trailing.top.equalToSuperview()
+            make.trailing.top.equalToSuperview()
+            make.leading.equalToSuperview().offset(8)
         }
     }
     
