@@ -85,30 +85,34 @@ class ViewController: UIViewController {
             self?.dataSource?.apply(snapshot)
         }.disposed(by: disposeBag)
         
-        output.movieResult.bind { movieResult in
-            print(movieResult)
-            var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
+        output.movieResult.bind { result in
+            print(result)
             
-            // nowPlaying
-            let nowPlayingSection = Section.banner
-            let nowPlayingItems = movieResult.nowPlaying.results.map{Item.bigImage($0)}
-            snapshot.appendSections([nowPlayingSection])
-            snapshot.appendItems(nowPlayingItems, toSection: nowPlayingSection)
-            
-            // popular
-            let popularSection = Section.horizontal("Popular")
-            let popularItems = movieResult.popular.results.map{Item.normal(Content(movie: $0))}
-            snapshot.appendSections([popularSection])
-            snapshot.appendItems(popularItems, toSection: popularSection)
-            
-            let upComingSection = Section.vertical("UpComing")
-            let upComingItems = movieResult.upcoming.results.map{Item.list($0)}
-            snapshot.appendSections([upComingSection])
-            snapshot.appendItems(upComingItems, toSection: upComingSection)
-            
-            self.dataSource?.apply(snapshot)
-            
-            
+            switch result {
+            case .success(let movieResult):
+                var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
+                
+                // nowPlaying
+                let nowPlayingSection = Section.banner
+                let nowPlayingItems = movieResult.nowPlaying.results.map{Item.bigImage($0)}
+                snapshot.appendSections([nowPlayingSection])
+                snapshot.appendItems(nowPlayingItems, toSection: nowPlayingSection)
+                
+                // popular
+                let popularSection = Section.horizontal("Popular")
+                let popularItems = movieResult.popular.results.map{Item.normal(Content(movie: $0))}
+                snapshot.appendSections([popularSection])
+                snapshot.appendItems(popularItems, toSection: popularSection)
+                
+                let upComingSection = Section.vertical("UpComing")
+                let upComingItems = movieResult.upcoming.results.map{Item.list($0)}
+                snapshot.appendSections([upComingSection])
+                snapshot.appendItems(upComingItems, toSection: upComingSection)
+                
+                self.dataSource?.apply(snapshot)
+            case .failure(let error) :
+                print(error)
+            }
         }.disposed(by : disposeBag)
     }
     
