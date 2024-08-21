@@ -32,6 +32,7 @@
 		CB3A053D2C69D29B002297F3 /* ListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3A053C2C69D29B002297F3 /* ListCollectionViewCell.swift */; };
 		CB3A053F2C69D7B3002297F3 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3A053E2C69D7B3002297F3 /* HeaderView.swift */; };
 		CBC6D9D02C760C620077595C /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC6D9CF2C760C620077595C /* ReviewViewController.swift */; };
+		CBC6D9D22C7610990077595C /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC6D9D12C7610990077595C /* Review.swift */; };
 		CBEDB2012C68873000FFF5A9 /* NormalCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEDB2002C68872F00FFF5A9 /* NormalCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -59,6 +60,7 @@
 		CB3A053C2C69D29B002297F3 /* ListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCollectionViewCell.swift; sourceTree = "<group>"; };
 		CB3A053E2C69D7B3002297F3 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		CBC6D9CF2C760C620077595C /* ReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
+		CBC6D9D12C7610990077595C /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
 		CBEDB2002C68872F00FFF5A9 /* NormalCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -140,6 +142,7 @@
 				CB3622D62C58C0F2002EC1EA /* Movie.swift */,
 				CB3622D82C58C466002EC1EA /* MovieResult.swift */,
 				CB3A05382C69CDB9002297F3 /* Content.swift */,
+				CBC6D9D12C7610990077595C /* Review.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -251,6 +254,7 @@
 				CBC6D9D02C760C620077595C /* ReviewViewController.swift in Sources */,
 				CB3622B42C57C9C7002EC1EA /* ViewController.swift in Sources */,
 				CB3622E92C5A0B67002EC1EA /* ButtonView.swift in Sources */,
+				CBC6D9D22C7610990077595C /* Review.swift in Sources */,
 				CBEDB2012C68873000FFF5A9 /* NormalCollectionViewCell.swift in Sources */,
 				CB3622DB2C58C671002EC1EA /* Network.swift in Sources */,
 				CB3622E32C5A0627002EC1EA /* TVNetwork.swift in Sources */,
