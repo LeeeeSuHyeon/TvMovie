@@ -33,6 +33,7 @@
 		CB3A053F2C69D7B3002297F3 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3A053E2C69D7B3002297F3 /* HeaderView.swift */; };
 		CBC6D9D02C760C620077595C /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC6D9CF2C760C620077595C /* ReviewViewController.swift */; };
 		CBC6D9D22C7610990077595C /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC6D9D12C7610990077595C /* Review.swift */; };
+		CBC6D9D42C7785A10077595C /* ReviewNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC6D9D32C7785A10077595C /* ReviewNetwork.swift */; };
 		CBEDB2012C68873000FFF5A9 /* NormalCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEDB2002C68872F00FFF5A9 /* NormalCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +62,7 @@
 		CB3A053E2C69D7B3002297F3 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		CBC6D9CF2C760C620077595C /* ReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
 		CBC6D9D12C7610990077595C /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
+		CBC6D9D32C7785A10077595C /* ReviewNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewNetwork.swift; sourceTree = "<group>"; };
 		CBEDB2002C68872F00FFF5A9 /* NormalCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -129,6 +131,7 @@
 				CB3622D32C58B501002EC1EA /* Entities */,
 				CB3622DA2C58C671002EC1EA /* Network.swift */,
 				CB3622E22C5A0627002EC1EA /* TVNetwork.swift */,
+				CBC6D9D32C7785A10077595C /* ReviewNetwork.swift */,
 				CB3622E42C5A062F002EC1EA /* MovieNetwork.swift */,
 				CB3622E62C5A07C5002EC1EA /* NetworkProvider.swift */,
 			);
@@ -252,6 +255,7 @@
 				CB3622D92C58C466002EC1EA /* MovieResult.swift in Sources */,
 				CB3A053F2C69D7B3002297F3 /* HeaderView.swift in Sources */,
 				CBC6D9D02C760C620077595C /* ReviewViewController.swift in Sources */,
+				CBC6D9D42C7785A10077595C /* ReviewNetwork.swift in Sources */,
 				CB3622B42C57C9C7002EC1EA /* ViewController.swift in Sources */,
 				CB3622E92C5A0B67002EC1EA /* ButtonView.swift in Sources */,
 				CBC6D9D22C7610990077595C /* Review.swift in Sources */,

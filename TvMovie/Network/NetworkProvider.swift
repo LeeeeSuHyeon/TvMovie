@@ -24,4 +24,9 @@ final class NetworkProvider {
         return MovieNetwork(network: network)
     }
     
+    func makeReviewNetwork() -> ReviewNetwork {
+        let network = Network<ReviewListModel>(endPoint: endPoint)
+        return ReviewNetwork(network: network)
+    }
+    
 }
