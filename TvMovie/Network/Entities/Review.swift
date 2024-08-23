@@ -20,7 +20,7 @@ struct ReviewModel : Decodable, Hashable {
 
     enum CodingKeys: String, CodingKey {
         case id
-        case author
+        case author = "author_details"
         case createdDate = "created_at"
         case content
     }
@@ -58,8 +58,14 @@ struct Reviewer : Decodable, Hashable {
         name = try container.decode(String.self, forKey: .name)
         username = try container.decode(String.self, forKey: .username)
         rating = try container.decode(Int.self, forKey: .rating)
-        let path = try container.decode(String.self, forKey: .imagePath)
-        imagePath = APIIMAGEPATH + path
+        
+        // imagePath가 null 일 수 있음
+        if let path = try container.decodeIfPresent(String.self, forKey: .imagePath) {
+            imagePath = APIIMAGEPATH + path
+        }
+        else {
+            imagePath = ""
+        }
     }
 }
 
