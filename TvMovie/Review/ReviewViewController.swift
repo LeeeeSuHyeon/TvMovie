@@ -34,6 +34,7 @@ class ReviewViewController : UIViewController {
         let layout = UICollectionViewCompositionalLayout.list(using: confing)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(ReviewHeaderCollectionViewCell.self, forCellWithReuseIdentifier: ReviewHeaderCollectionViewCell.id)
+        collectionView.register(ReviewContentCollectionViewCell.self,  forCellWithReuseIdentifier: ReviewContentCollectionViewCell.id)
         return collectionView
     }()
     
@@ -56,7 +57,24 @@ class ReviewViewController : UIViewController {
             make.edges.equalToSuperview()
         }
         
+        
         setDataSource()
+        
+        collectionView.rx.itemSelected.bind {[weak self] indexPath in
+            guard let item = self?.dataSource?.itemIdentifier(for: indexPath),
+                  var sectionSnapshot = self?.dataSource?.snapshot(for: .list)
+            else {return}
+            
+            if case .header = item {
+                if sectionSnapshot.isExpanded(item) {
+                    sectionSnapshot.collapse([item])
+                } else {
+                    sectionSnapshot.expand([item])
+                }
+            } 
+            self?.dataSource?.apply(sectionSnapshot, to: .list)
+            
+        }.disposed(by: disposeBag)
         
         var dataSourceSnapshot = NSDiffableDataSourceSnapshot<Section, Item>()
         dataSourceSnapshot.appendSections([.list])
@@ -72,10 +90,13 @@ class ReviewViewController : UIViewController {
                 cell?.config(title: header.name, url: header.URL)
                 return cell
             case .content(let content) :
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ReviewHeaderCollectionViewCell.id, for: indexPath) as? ReviewHeaderCollectionViewCell
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ReviewContentCollectionViewCell.id, for: indexPath) as? ReviewContentCollectionViewCell
+                cell?.confing(content: content)
                 return cell
             }
         })
+        
+        
     }
     
     func bindViewModel(){
@@ -98,7 +119,9 @@ class ReviewViewController : UIViewController {
                 let header = ReviewHeader(id: review.id,
                                           name: review.author.name.isEmpty ? review.author.username : review.author.name, URL: review.author.imagePath)
                 let headerItem = Item.header(header)
+                let contentItem = Item.content(review.content)
                 sectionSnapshot.append([headerItem])
+                sectionSnapshot.append([contentItem], to: headerItem)
             }
             self?.dataSource?.apply(sectionSnapshot, to: .list)
         }
