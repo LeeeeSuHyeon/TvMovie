@@ -28,6 +28,13 @@ fileprivate struct ReviewHeader {
 class ReviewViewController : UIViewController {
     let reviewViewModel : ReviewViewModel
     let disposeBag = DisposeBag()
+    let collectionView : UICollectionView = {
+        let confing = UICollectionLayoutListConfiguration(appearance: .plain)
+        let layout = UICollectionViewCompositionalLayout.list(using: confing)
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.register(ReviewHeaderCollectionViewCell.self, forCellWithReuseIdentifier: ReviewHeaderCollectionViewCell.id)
+        return collectionView
+    }()
     
     init(id : Int, contentType : ContentType){
         self.reviewViewModel = ReviewViewModel(id: id, contentType: contentType)
@@ -38,6 +45,15 @@ class ReviewViewController : UIViewController {
         super.viewDidLoad()
         
         bindViewModel()
+        setUI()
+    }
+    
+    func setUI() {
+        view.addSubview(collectionView)
+        
+        collectionView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
     }
     
     func bindViewModel(){
