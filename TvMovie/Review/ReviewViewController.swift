@@ -9,6 +9,22 @@ import Foundation
 import UIKit
 import RxSwift
 
+fileprivate enum Section {
+    case list
+}
+
+fileprivate enum Item {
+    case header(ReviewHeader)
+    case content(String)
+}
+
+fileprivate struct ReviewHeader {
+    let id : String
+    let name : String
+    let URL : String
+}
+
+
 class ReviewViewController : UIViewController {
     let reviewViewModel : ReviewViewModel
     let disposeBag = DisposeBag()

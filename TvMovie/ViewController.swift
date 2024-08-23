@@ -10,15 +10,15 @@ import SnapKit
 import RxSwift
 
 // 레이아웃
-enum Section : Hashable {
-    case double 
+fileprivate enum Section : Hashable {
+    case double
     case banner
     case horizontal(String)
     case vertical(String)
 }
 
 // 셀
-enum Item : Hashable {
+fileprivate enum Item : Hashable {
     case normal(Content)
     case bigImage(Movie)
     case list(Movie)
