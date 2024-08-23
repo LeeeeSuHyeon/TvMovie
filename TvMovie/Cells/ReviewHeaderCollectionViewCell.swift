@@ -32,6 +32,10 @@ class ReviewHeaderCollectionViewCell : UICollectionViewCell {
         addSubview(imageView)
         addSubview(titleLabel)
         
+        snp.makeConstraints { make in
+            make.height.equalTo(44)
+        }
+        
         imageView.snp.makeConstraints { make in
             make.leading.top.bottom.equalToSuperview()
             make.width.equalToSuperview().multipliedBy(0.3)
