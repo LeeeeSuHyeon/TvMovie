@@ -28,6 +28,37 @@ fileprivate enum Item : Hashable {
 class ViewController: UIViewController {
     let disposeBag = DisposeBag()
     let buttonView = ButtonView()
+    let stackView : UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.spacing = 3
+        return stackView
+    }()
+    let textField : UITextField = {
+        let textField = UITextField()
+        textField.placeholder = "검색"
+        textField.layer.borderWidth = 1
+        textField.layer.borderColor = UIColor.systemGray4.cgColor
+        textField.layer.cornerRadius = 8
+        
+        let containerView = UIView()
+        let imageView = UIImageView(image: UIImage(systemName: "magnifyingglass"))
+        containerView.snp.makeConstraints { make in
+            make.width.height.equalTo(30)
+        }
+        containerView.addSubview(imageView)
+        imageView.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.leading.top.equalToSuperview().offset(2)
+            make.width.height.equalTo(20)
+        }
+
+        
+        textField.leftView = containerView
+        textField.leftViewMode = .always
+        textField.tintColor = .black
+        return textField
+    }()
     private var dataSource : UICollectionViewDiffableDataSource<Section, Item>?
     
     lazy var collectionView : UICollectionView = {
@@ -55,17 +86,25 @@ class ViewController: UIViewController {
     }
     
     private func setUI(){
-        self.view.addSubview(buttonView)
+        self.view.addSubview(stackView)
+        stackView.addArrangedSubview(buttonView)
+        stackView.addArrangedSubview(textField)
         self.view.addSubview(collectionView)
         
+        stackView.snp.makeConstraints { make in
+            make.leading.trailing.top.equalTo(self.view.safeAreaLayoutGuide).inset(8)
+        }
+        textField.snp.makeConstraints { make in
+            make.height.equalTo(40)
+        }
         buttonView.snp.makeConstraints { make in
-            make.leading.trailing.top.equalTo(self.view.safeAreaLayoutGuide)
+//            make.leading.trailing.top.equalTo(self.view.safeAreaLayoutGuide)
             make.height.equalTo(80)
         }
         
         collectionView.snp.makeConstraints { make in
             make.leading.trailing.bottom.equalToSuperview()
-            make.top.equalTo(buttonView.snp.bottom)
+            make.top.equalTo(stackView.snp.bottom).offset(8)
         }
     }
 
@@ -119,10 +158,12 @@ class ViewController: UIViewController {
     private func bindView(){
         // TV 버튼 눌렀을 때, tvTrigger에 Void 전달
         buttonView.TVButton.rx.tap.bind { [weak self] in
+            self?.textField.isHidden = false
             self?.tvTrigger.onNext(1)
         }.disposed(by: disposeBag)
         
         buttonView.MovieButton.rx.tap.bind { [weak self] in 
+            self?.textField.isHidden = true
             self?.movieTrigger.onNext(Void())
         }.disposed(by: disposeBag)
         
