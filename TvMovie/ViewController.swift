@@ -109,7 +109,14 @@ class ViewController: UIViewController {
     }
 
     private func bindViewModel(){
-        let input = ViewModel.Input(tvTrigger: tvTrigger, MovieTrigger: movieTrigger)
+        
+        // 텍스트 필드가 바뀔 때마다 API 호출이 아닌 0.2초의 딜레이를 주어 호출함
+        let query = textField.rx.text.orEmpty.distinctUntilChanged().debounce(.milliseconds(200), scheduler: MainScheduler.asyncInstance)
+            .map {[weak self] query in
+                self?.tvTrigger.onNext(1)
+                return query
+            }
+        let input = ViewModel.Input(query: query, tvTrigger: tvTrigger.asObservable(), MovieTrigger: movieTrigger.asObservable())
         let output = viewModel.transform(input: input)
         
         // disposeBag : ViewController가 사라질 때 바인딩도 함께 제거

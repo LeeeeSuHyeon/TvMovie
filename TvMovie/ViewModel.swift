@@ -22,6 +22,7 @@ class ViewModel {
     }
     
     struct Input {
+        let query : Observable<String>
         let tvTrigger : Observable<Int>
         let MovieTrigger : Observable<Void>
     }
@@ -32,20 +33,37 @@ class ViewModel {
     }
     
     func transform(input : Input) -> Output {
-        
-        // trigger -> network -> Observable<T> -> VC 전달 -> VC 구독
-        let tvList = input.tvTrigger.flatMapLatest { [unowned self] page -> Observable<[TV]> in
-            if page == 1 {
-                currentTVList = []
+        let tvList = Observable.combineLatest(input.query, input.tvTrigger)
+            .flatMapLatest {  [unowned self] query, page in
+                if page == 1 { currentTVList = [] }
+                contentType = .tv
+                
+                if query.isEmpty {
+                    return self.tvNetwork.getTopRatedList(page: page)
+                } else {
+                    return self.tvNetwork.getQueriedList(page: page, query: query)
+                }
             }
-            contentType = .tv
-            // tvTrigger -> Observable<Void> -> Observable<TV>
-            return self.tvNetwork.getTopRatedList(page: page).map{$0.results}.map { tvList in
+            .map{$0.results}
+            .map { tvList in
                 // 현재 리스트 + 새로 받아온 리스트
                 self.currentTVList += tvList
                 return self.currentTVList
             }
-        }
+        
+        // trigger -> network -> Observable<T> -> VC 전달 -> VC 구독
+//        let tvList = input.tvTrigger.flatMapLatest { [unowned self] page -> Observable<[TV]> in
+//            if page == 1 {
+//                currentTVList = []
+//            }
+//            contentType = .tv
+//            // tvTrigger -> Observable<Void> -> Observable<TV>
+//            return self.tvNetwork.getTopRatedList(page: page).map{$0.results}.map { tvList in
+//                // 현재 리스트 + 새로 받아온 리스트
+//                self.currentTVList += tvList
+//                return self.currentTVList
+//            }
+//        }
         
         let movieResult = input.MovieTrigger.flatMapLatest { [unowned self] _ -> Observable<Result<MovieResult,Error>> in
             contentType = .movie

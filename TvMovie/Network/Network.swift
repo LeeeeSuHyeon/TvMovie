@@ -19,9 +19,13 @@ class Network<T : Decodable> {
         self.queue = ConcurrentDispatchQueueScheduler(qos: .background)
     }
     
-    func getItemList(path : String, language : String = "ko", page : Int? = nil) -> Observable<T> {
+    func getItemList(path : String, language : String = "ko", page : Int? = nil, query : String? = nil) -> Observable<T> {
 
         var fullPath = "\(endPoint)\(path)?api_key=\(APIKEY)&language=\(language)"
+        // 문자열 거르기?
+        if let query = query?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
+            fullPath += "&query=\(query)"
+        }
         if let page = page {
             fullPath += "&page=\(page)"
         }
