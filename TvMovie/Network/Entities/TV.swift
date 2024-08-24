@@ -35,11 +35,14 @@ struct TV : Decodable, Hashable {
         
         id = try container.decode(Int.self, forKey: .id)
         name = try container.decode(String.self, forKey: .name)
-        overview = try container.decode(String.self, forKey: .overview)
+        overview = try container.decodeIfPresent(String.self, forKey: .overview) ?? ""
         
-        let path = try container.decode(String.self, forKey: .posterPath)
-        posterURL = APIIMAGEPATH + path
-        
+        let path = try container.decodeIfPresent(String.self, forKey: .posterPath)
+        if let path = path {
+            posterURL = APIIMAGEPATH + path
+        } else {
+            posterURL = ""
+        }
         let voteAverage = try container.decode(Float.self, forKey: .voteAverage)
         let voteCount = try container.decode(Int.self, forKey: .voteCount)
         vote = "\(voteAverage) (\(voteCount))"

@@ -12,6 +12,8 @@ class ViewModel {
     let disposeBag = DisposeBag()
     private let tvNetwork : TVNetwork
     private let movieNetwork : MovieNetwork
+    var contentType : ContentType = .tv
+    var currentTVList : [TV] = []
     
     init(){
         let provider = NetworkProvider()
@@ -20,7 +22,7 @@ class ViewModel {
     }
     
     struct Input {
-        let tvTrigger : Observable<Void>
+        let tvTrigger : Observable<Int>
         let MovieTrigger : Observable<Void>
     }
     
@@ -32,13 +34,21 @@ class ViewModel {
     func transform(input : Input) -> Output {
         
         // trigger -> network -> Observable<T> -> VC 전달 -> VC 구독
-        let tvList = input.tvTrigger.flatMapLatest { [unowned self] _ -> Observable<[TV]> in
-            
+        let tvList = input.tvTrigger.flatMapLatest { [unowned self] page -> Observable<[TV]> in
+            if page == 1 {
+                currentTVList = []
+            }
+            contentType = .tv
             // tvTrigger -> Observable<Void> -> Observable<TV>
-            return self.tvNetwork.getTopRatedList().map{$0.results}
+            return self.tvNetwork.getTopRatedList(page: page).map{$0.results}.map { tvList in
+                // 현재 리스트 + 새로 받아온 리스트
+                self.currentTVList += tvList
+                return self.currentTVList
+            }
         }
         
         let movieResult = input.MovieTrigger.flatMapLatest { [unowned self] _ -> Observable<Result<MovieResult,Error>> in
+            contentType = .movie
             
             // 여러 개의 Observable을 합칠 때는 combineLatest를 사용
             return Observable.combineLatest(movieNetwork.getUpcoming(), movieNetwork.getPopular(), 

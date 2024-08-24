@@ -71,7 +71,9 @@ class NormalCollectionViewCell : UICollectionViewCell {
     }
     
     func config(imageURL : String, title : String, review : String, description : String) {
-        imageView.kf.setImage(with: URL(string: imageURL))
+        if !(imageURL == "") {
+            imageView.kf.setImage(with: URL(string: imageURL))
+        }
         titleLabel.text = title
         reviewLabel.text = review
         descriptionLabel.text = description

@@ -41,7 +41,7 @@ class ViewController: UIViewController {
     }()
     
     let viewModel = ViewModel()
-    let tvTrigger = PublishSubject<Void>()
+    let tvTrigger = BehaviorSubject<Int>(value: 1)
     let movieTrigger = PublishSubject<Void>()
 
     override func viewDidLoad() {
@@ -51,7 +51,7 @@ class ViewController: UIViewController {
         setDatasource()
         bindViewModel()
         bindView()
-        tvTrigger.onNext(())
+        tvTrigger.onNext(1)
     }
     
     private func setUI(){
@@ -119,7 +119,7 @@ class ViewController: UIViewController {
     private func bindView(){
         // TV 버튼 눌렀을 때, tvTrigger에 Void 전달
         buttonView.TVButton.rx.tap.bind { [weak self] in
-            self?.tvTrigger.onNext(Void())
+            self?.tvTrigger.onNext(1)
         }.disposed(by: disposeBag)
         
         buttonView.MovieButton.rx.tap.bind { [weak self] in 
@@ -138,6 +138,23 @@ class ViewController: UIViewController {
             default :
                 print("default")
             }
+        }.disposed(by: disposeBag)
+        
+        collectionView.rx.prefetchItems
+            .filter({ _ in
+                return self.viewModel.contentType == .tv
+            })
+            .bind {[weak self] indexPath in
+                let snapshot = self?.dataSource?.snapshot()
+                guard let lastIndexPath = indexPath.last,
+                      let section = self?.dataSource?.sectionIdentifier(for: lastIndexPath.section),
+                      let itemCount = snapshot?.numberOfItems(inSection: section),
+                        let currentPage = try? self?.tvTrigger.value()
+                else { return }
+                if lastIndexPath.row > itemCount - 4 {
+                    self?.tvTrigger.onNext(currentPage + 1)
+                }
+
         }.disposed(by: disposeBag)
     }
     
